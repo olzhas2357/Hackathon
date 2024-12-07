@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to the Student Management System</h1>
+    <p>Use the navigation menu to explore the platform.</p>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! You are logged in as <strong>{{ user.role }}</strong>.</p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">Register</a> to get started.</p>
+    {% endif %}
+</div>
+{% endblock %}
