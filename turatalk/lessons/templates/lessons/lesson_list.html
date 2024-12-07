@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Lesson List</h1>
+
+  <ul>
+    {% for lesson in lessons %}
+      <li><a href="{% url 'lesson_detail' lesson.pk %}">{{ lesson.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_teacher %}
+    <a href="{% url 'lesson_create' %}">Create a New Lesson</a>
+  {% endif %}
+{% endblock %}

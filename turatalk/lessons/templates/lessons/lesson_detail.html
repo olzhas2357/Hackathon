@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ lesson.title }}</h1>
+  <p>{{ lesson.description }}</p>
+
+  <h3>Contents:</h3>
+  <ul>
+    {% for content in lesson.contents.all %}
+      <li>{{ content.title }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Assignments:</h3>
+  <ul>
+    {% for assignment in lesson.assignments.all %}
+      <li>{{ assignment.title }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_teacher %}
+    <a href="{% url 'lesson_edit' lesson.pk %}">Edit Lesson</a>
+    <form method="POST" action="{% url 'lesson_delete' lesson.pk %}">
+      {% csrf_token %}
+      <button type="submit">Delete Lesson</button>
+    </form>
+  {% endif %}
+
+  <a href="{% url 'lesson_list' %}">Back to Lesson List</a>
+{% endblock %}

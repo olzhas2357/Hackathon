@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Are you sure you want to delete the lesson: {{ lesson.title }}?</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, delete this lesson</button>
+  </form>
+  <a href="{% url 'lesson_detail' lesson.pk %}">Cancel</a>
+{% endblock %}
